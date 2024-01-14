@@ -1,0 +1,14 @@
+.button {
+  background: #53a761;
+  max-width: max-content;
+  padding: 12px 24px;
+  border-radius: 8px;
+
+  &__element {
+    background: none;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    color: inherit;
+  }
+}
