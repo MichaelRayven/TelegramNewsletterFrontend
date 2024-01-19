@@ -15,8 +15,8 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>((
 
   const getVisibilityIcon = () => 
     shouldShowText ?
-      <MdVisibilityOff className="icon-button__icon" /> :
-      <MdVisibility className="icon-button__icon" />
+      <MdVisibilityOff /> :
+      <MdVisibility />
   const getInputType = () => isPasswordField && shouldShowText ? "text" : props.type
   const getClassName = () => props.className ? props.className + " input__element" : "input__element"
 
@@ -36,7 +36,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>((
         {
           text.length != 0 &&
           <button 
-            className="icon-button" 
+            className="button__icon" 
             onClick={() => setText("")}>
               <MdClose className="icon-button__icon"/>
           </button>
@@ -44,7 +44,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>((
         {
           (text.length != 0 && isPasswordField) &&
           <button 
-            className="icon-button" 
+            className="button__icon" 
             onClick={() => setShouldShowText(!shouldShowText)}>
               {getVisibilityIcon()}
           </button>
