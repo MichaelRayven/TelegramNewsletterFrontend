@@ -1,0 +1,7 @@
+@use "../styles/util/" as u;
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    column-gap: u.rem(8);
+}
