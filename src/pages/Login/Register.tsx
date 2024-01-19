@@ -1,3 +1,5 @@
+import Header from "@/components/Header";
+import InputField from "@/components/InputField";
 import { SubmitHandler, useForm } from "react-hook-form"
 
 type Inputs = {
@@ -14,13 +16,26 @@ const RegisterPage = () => {
   console.log(watch("username"))
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input type="text" placeholder="Username" {...register("username", {minLength: 6, maxLength: 12, required: true, pattern: /\w*/})}/>
-      <input type="email" placeholder="email@example.com" {...register("email", {required: true})}/>
-      <input type="password" placeholder="Password" {...register("password", {required: true, pattern: /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/})}/>
-      <input type="submit" />
-    </form>
+    <>
+    <Header></Header>
+    <section className="signin">
+      <div className="container">
+        <div className="signin__dialog">
+          <h2>Sign in</h2>
+          <form className="signin__form" onSubmit={handleSubmit(onSubmit)}>
+            <InputField type="text" placeholder="Username" {...register("username", {minLength: 6, maxLength: 12, required: true, pattern: /\w*/})} />
+            <InputField type="email" placeholder="email@example.com" {...register("email", {required: true, pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/})}/>
+            <InputField type="password" placeholder="Password" {...register("password", {required: true, minLength: 8, pattern: /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/})}/>
+            <button className="button signin__button" type="submit">Sign in</button>
+
+            <p>{errors.password?.type}</p>
+            
+          </form>
+        </div>
+      </div>
+    </section>
+    </>
   )
 }
 
-export default LoginPage
+export default RegisterPage
