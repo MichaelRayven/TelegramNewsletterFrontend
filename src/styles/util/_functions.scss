@@ -1,4 +1,6 @@
 @use "sass:math";
+@use "sass:map";
+@use "../globals/colors" as c;
 
 @function rem($pixel) {
   // divide $pixel by 16 to return rems
@@ -16,4 +18,16 @@
   } @else {
     @error "Error: Function em() doesn\'t accept units; only numbers";
   }
+}
+
+@function cl($name, $light-theme) {
+  @if ($light-theme) {
+    @return "rgb(" + #{map.get(c.$colors-light, #{$name})} + ")";
+  } @else {
+    @return "rgb(" + #{map.get(c.$colors-dark, #{$name})} + ")";
+  } 
+}
+
+@function cla($name, $alpha) {
+  @return "rgba(var(--" + #{$name} + ", " #{$alpha} ")"; 
 }

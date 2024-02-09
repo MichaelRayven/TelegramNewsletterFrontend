@@ -1,50 +1,53 @@
 @use "../styles/globals" as g;
 @use "../styles/util" as u;
 
-.header {
-  &__wrapper {
-    display: grid;
-    padding-block: u.rem(16);
-  
-    grid-template-columns: repeat(3, 1fr); 
-    align-items: center;
+.logo {
+  display: flex;
+  gap: u.rem(16);
 
-    & *:nth-child(2) {
-      justify-self: center;
-    }
-  
-    & *:last-child {
-      justify-self: end;
-    }
+  &__text {
+    @include g.h3;
   }
-
-  &__actions {
-    display: flex;
-    column-gap: u.rem(32);
-    align-items: center;
-  }
-
-  width: 100%;
-  border-bottom: u.rem(1) solid var(--text-disabled-color);  
 }
 
 .nav {
   &__list {
     display: flex;
-    column-gap: u.rem(32);
+    gap: u.rem(32);
+  }
+
+  &__item {
+    & > .link {
+      @include g.h5;
+    }
   }
 }
 
-.logo {
-  @include g.h4;
+.header {
+  margin-block: u.rem(16);
 
-  display: flex;
-  align-items: center;
-  column-gap: u.rem(16);
+  background: var(--color-surface);
+  padding-inline: u.rem(24);
+  border-radius: u.rem(24);
 
-  &__image {
-    height: u.rem(48);
-    width: u.rem(48);
-    transform: rotateZ(-90deg);
+  &__actions {
+    display: flex;
+    gap: u.rem(16);
+    align-items: center;
+  }
+
+  &__inner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    align-items: center;
+
+    & > :nth-child(2) {
+      justify-self: center;
+    }
+
+    & > :nth-child(3) {
+      justify-self: flex-end;
+    }
   }
 }

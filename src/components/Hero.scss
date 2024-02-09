@@ -1,0 +1,27 @@
+@use "../styles/util" as u;
+
+.hero {
+  margin-block: u.rem(16);
+
+  background: var(--color-surface);
+  border-radius: u.rem(24);
+  padding: u.rem(24);
+
+  display: flex;
+  flex-wrap: wrap-reverse;
+  align-items: center;
+  
+  &__heading {
+    text-align: center;
+    margin-bottom: u.rem(16);
+  }
+
+  &__col {
+    flex: 1 0 0;
+  }
+
+  &__illustration {
+    width: 100%;
+    height: auto;
+  }
+}

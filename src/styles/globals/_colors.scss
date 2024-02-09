@@ -1,9 +1,59 @@
-:root {
-    --background-color: #F7F8FA;
-    --text-color: #0E130F;
-    --text-disabled-color: #404640;
-    --primary-color: #68E02D;
-    --accent-color: #E04CDD;
-    --light-primary-color: #BDE0AC;
-    --light-accent-color: #E7B8E6;
-}
+@use "sass:map";
+
+$color-text-light: 14, 19, 15;
+$color-text-dark: 234, 247, 237;
+
+$color-text-light-disabled: 62, 77, 65;
+$color-text-dark-disabled: 166, 207, 176;
+
+$color-background-light: 247, 248, 250;
+$color-background-dark: 0, 0, 0;
+
+$color-surface-light: 205, 243, 187;
+$color-surface-dark: 65, 76, 62;
+
+$color-primary-100: 164, 236, 129;
+$color-primary-200: 149, 233, 108;
+$color-primary-300: 134, 230, 87;
+$color-primary-400: 119, 227, 66;
+$color-primary-500: 104, 224, 45;
+$color-primary-600: 94, 202, 41;
+$color-primary-700: 83, 179, 36;
+$color-primary-800: 73, 157, 31;
+$color-primary-900: 62, 134, 27;
+
+$color-accent-100: 236, 148, 235;
+$color-accent-200: 233, 130, 231;
+$color-accent-300: 230, 112, 228;
+$color-accent-400: 227, 94, 224;
+$color-accent-500: 224, 76, 221;
+$color-accent-600: 202, 68, 199;
+$color-accent-700: 179, 61, 177;
+$color-accent-800: 157, 53, 155;
+$color-accent-900: 134, 46, 133;
+
+$colors-dark: (
+    "primary": $color-primary-600,
+    "primary-light": $color-primary-400,
+    "primary-dark": $color-primary-700,
+    "accent": $color-accent-500,
+    "accent-light": $color-accent-400,
+    "accent-dark": $color-accent-600,
+    "text": $color-text-dark,
+    "text-disabled": $color-text-dark-disabled,
+    "surface": $color-surface-dark,
+    "background": $color-background-dark,
+);
+
+$colors-light: (
+    "primary": $color-primary-500,
+    "primary-light": $color-primary-400,
+    "primary-dark": $color-primary-600,
+    "accent": $color-accent-500,
+    "accent-light": $color-accent-400,
+    "accent-dark": $color-accent-600,
+    "text": $color-text-light,
+    "text-disabled": $color-text-light-disabled,
+    "surface": $color-surface-light,
+    "background": $color-background-light,
+);

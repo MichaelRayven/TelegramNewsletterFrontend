@@ -1,8 +1,13 @@
-import InputField from "@/components/InputField"
+import Header from "@/components/Header"
+import "./Home.scss"
+import Hero from "@/components/Hero"
 
 const Home = () => {
   return (
-    <InputField type="password"></InputField>
+    <>
+    <Header></Header>
+    <Hero></Hero>
+    </>
   )
 }
 

@@ -1,9 +1,26 @@
 @use "util" as u;
 @use "globals" as g;
+@use "layouts" as l;
+
+@media (prefers-color-scheme: dark) {
+  @each $name, $val in g.$colors-dark {
+      :root {
+          --#{$name}: #{$val}; 
+          --color-#{$name}: #{u.cl($name, false)}; 
+      }
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  @each $name, $val in g.$colors-light {
+      :root {
+          --#{$name}: #{$val}; 
+          --color-#{$name}: #{u.cl($name, true)}; 
+      }
+  }
+}
 
 :root {
-  // color-scheme: light dark;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -14,10 +31,12 @@
 *,
 *::before,
 *::after {
-  box-sizing: inherit;
   margin: 0;
   padding: 0;
+  min-width: 0;
+  box-sizing: inherit;
   font-family: inherit;
+  font-size: inherit;
 }
 
 // Sets the font-size to match that of device or browser settings
@@ -26,27 +45,15 @@
 html {
   box-sizing: border-box;
   font-size: 100%;
-
-  @include u.breakpoint-down(large) {
-    font-size: 80%;
-  }
-
-  height: 100%;
 }
 
 body {
   font-family: u.$font;
-  line-height: 120%;
+  font-size: 100%;
   font-weight: 400;
 
-  height: 100%;
-
-  background: url("@/assets/background.svg") center no-repeat fixed;
-  background-size: cover;
-}
-
-input {
-  font-size: 110%;
+  line-height: 100%;
+  color: var(--color-text);
 }
 
 a,
@@ -66,6 +73,7 @@ ol {
 button {
   outline: none;
   border: none;
+  background: none;
 
   cursor: pointer;
   transition: border-color 0.25s;
@@ -73,55 +81,6 @@ button {
 
   &:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
-  }
-}
-
-.button {
-  transition: transform .2s ease, box-shadow .2s ease;
-
-  background-color: var(--primary-color);
-  color: var(--text-color);
-  padding: u.rem(8) u.rem(24);
-  @include g.text;
-  border-radius: u.rem(8);
-
-  &__outlined {
-    border: solid u.rem(2) var(--primary-color);
-    background-color: var(--background-color);
-  }
-
-  &__icon {
-    width: u.rem(32);
-    height: u.rem(32);
-
-    display: flex;
-    padding: u.rem(4);
-    cursor: pointer;
-    transition: background .1s ease-in;
-
-    border: none;
-    border-radius: 999px;
-    background: none;
-
-    color: var(--accent-color);
-
-    & * {
-      flex: 1 0 auto;
-      height: 100%;
-    }
-
-    &:hover, &:focus-visible {
-      background: rgba(0,0,0,.1);
-    }
-
-    &:active {
-      background: rgba(0,0,0,.15);
-    }
-  }
-
-  &:hover {
-    transform: translateY(u.rem(-4));
-    box-shadow: u.rem(0) u.rem(4) u.rem(16) u.rem(0) var(--primary-color);
   }
 }
 
@@ -136,7 +95,7 @@ button {
     opacity: 0.7;
   }
 
-  &__underlined {
+  &_underlined {
     position: relative;
     padding-bottom: u.rem(2);
     width: max-content;
@@ -145,7 +104,7 @@ button {
       content: "";
       position: absolute;
       height: u.rem(1);
-      background-color: var(--text-color);
+      background-color: var(--color-accent);
       width: 95%;
 
       top: 100%;
@@ -158,9 +117,4 @@ button {
       height: u.rem(4);
     }
   }
-}
-
-.container {
-  margin: 0 auto;
-  max-width: u.rem(1200);
 }

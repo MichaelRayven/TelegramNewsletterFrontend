@@ -37,31 +37,31 @@ a:active {
 
 @mixin h1 {
   font-weight: 700;
-  font-size: 100% * 7.59375;
+  font-size: 100% * 4.125;
   line-height: 200%;
 }
 
 @mixin h2 {
   font-weight: 700;
-  font-size: 100% * 5.0625;
+  font-size: 100% * 3.125;
   line-height: 200%;
 }
 
 @mixin h3 {
-  font-weight: 500;
-  font-size: 100% * 3.375;
+  font-weight: 600;
+  font-size: 100% * 2.375;
   line-height: 200%;
 }
 
 @mixin h4 {
   font-weight: 500;
-  font-size: 100% * 2.25;
+  font-size: 100% * 1.75;
   line-height: 100%;
 }
 
 @mixin h5 {
   font-weight: 600;
-  font-size: 100% * 1.5;
+  font-size: 100% * 1.38;
 }
 
 @mixin h6 {
