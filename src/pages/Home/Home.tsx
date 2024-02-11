@@ -2,7 +2,7 @@ import Header from "@/components/Header"
 import "./Home.scss"
 import Hero from "@/components/Hero"
 
-const Home = () => {
+const HomePage = () => {
   return (
     <>
     <Header></Header>
@@ -11,4 +11,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomePage
