@@ -1,2 +1,41 @@
 @use "../styles/util" as u;
 @use "../styles/globals" as g;
+
+.footer {
+  &__inner {
+    display: flex;
+    gap: u.rem(64);
+  }
+
+  &__subheading {
+    @include g.h5;
+  }
+
+  &__copyright {
+    margin-top: u.rem(24);
+    text-align: center;
+  }
+
+  &__col {
+    display: flex;
+    flex-direction: column;
+    gap: u.rem(16);
+
+    &:first-of-type {
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: u.rem(12);
+  }
+}
+
+.newsletter-form {
+  display: flex;
+  align-items: center;
+  gap: u.rem(16);
+}
