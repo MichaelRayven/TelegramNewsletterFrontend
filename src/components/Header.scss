@@ -1,15 +1,6 @@
 @use "../styles/globals" as g;
 @use "../styles/util" as u;
 
-.logo {
-  display: flex;
-  gap: u.rem(16);
-
-  &__text {
-    @include g.h3;
-  }
-}
-
 .nav {
   &__list {
     display: flex;
@@ -27,7 +18,7 @@
   margin-block: u.rem(16);
 
   background: var(--color-surface);
-  padding-inline: u.rem(24);
+  padding: u.rem(16) u.rem(24);
   border-radius: u.rem(24);
 
   &__actions {

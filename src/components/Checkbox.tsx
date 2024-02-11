@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { MdCheckBox, MdOutlineCheckBox } from "react-icons/md"
+import { MdCheckBoxOutlineBlank, MdOutlineCheckBox } from "react-icons/md"
 import "./Checkbox.scss"
 
 interface Props {
@@ -11,8 +11,8 @@ const Checkbox = ({ children, value }: Props) => {
     const [checked, setChecked] = useState(value || false)
     
     const getCheckboxIcon = () => checked ? 
-        <MdCheckBox /> :
-        <MdOutlineCheckBox />
+        <MdOutlineCheckBox /> :
+        <MdCheckBoxOutlineBlank />
 
     return (
         <div className="checkbox">

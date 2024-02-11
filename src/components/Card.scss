@@ -1,0 +1,19 @@
+@use "../styles/util" as u;
+
+.card {
+  background: var(--color-surface);
+  padding: u.rem(24);
+  border-radius: u.rem(24);
+
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: u.rem(16);
+  }
+}

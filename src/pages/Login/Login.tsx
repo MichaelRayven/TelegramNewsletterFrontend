@@ -6,6 +6,10 @@ import "./Login.scss"
 import axios from "axios";
 import { useEffect } from "react";
 import Checkbox from "@/components/Checkbox";
+import Card from "@/components/Card";
+import Logo from "@/components/Logo";
+import { MdEmail, MdError, MdKey } from "react-icons/md";
+import { ErrorMessage } from "@hookform/error-message";
 
 type Inputs = {
   username: string,
@@ -13,56 +17,84 @@ type Inputs = {
   password: string,
 };
 
-const errorMessages = {
-  email: {
-    validate: "",
-    required: "Email is required"
-  },
-  password: {
-    pattern: "Password must be at least 8 characters long and contain at least 1 uppercase letter, 1 numeral, and 1 special character.",
-    required: "Password is required"
-  }
-}
-
-
 const LoginPage = () => {
-  const { register, handleSubmit, watch, formState: {errors} } = useForm<Inputs>()
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>()
   const signInUrl = baseURL + apiVersion + loginEndpoint
   useEffect(() => {
     console.log(signInUrl)
   }, [])
   const onSubmit: SubmitHandler<Inputs> = data => {
     axios
-    .post(signInUrl, data)
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+      .post(signInUrl, data)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
-  
-  console.log(watch("username"))
 
+  console.log(watch("username"))
+  console.log(errors)
   return (
     <>
-    <Header></Header>
-    <section className="signin">
-      <div className="container">
-        <div className="signin__dialog">
-          <h2>Sign in</h2>
-          <form className="signin__form" onSubmit={handleSubmit(onSubmit)}>
-            <InputField type="email" placeholder="Email@example.com" {...register("email", {required: true, pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/})}/>
-            <InputField type="password" placeholder="Password" {...register("password", {required: true, minLength: 8, pattern: /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/})}/>
-            <button className="button signin__button" type="submit">Sign in</button>
-            <a className="link" href=""><p>Did you forget your password?</p></a>
-            <Checkbox>Remember me</Checkbox>
-            <p>{errors.password?.type}</p>
-            
-          </form>
-        </div>
-      </div>
-    </section>
+      <Header></Header>
+      <main>
+        <section className="signin">
+          <Card
+            className="signin__dialog"
+            heading={<Logo />}
+          >
+            <h5 className="signin__heading">Sign in</h5>
+            <p className="signin__cta">Jump back to action with Botty!</p>
+            <form className="signin__form" onSubmit={handleSubmit(onSubmit)}>
+              <InputField
+                placeholder="Email@example.com"
+                icon={<MdEmail/>}
+                {...register("email", { 
+                  required: "Email is required", 
+                  pattern: {
+                    message: "Please include '@' in the email address.",
+                    value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/ 
+                  }
+                })}
+              />
+              <InputField
+                type="password"
+                placeholder="Password"
+                icon={<MdKey />}
+                {...register("password", { 
+                  required: "Password is required", 
+                  minLength: {
+                    value: 8,
+                    message: "Password must be at least 8 characters long."
+                  }, 
+                  pattern: {
+                    message: "Password must contain at least 1 uppercase letter, 1 numeral, and 1 special character.",
+                    value: /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/ 
+                  }
+                })}
+              />
+              <div className="signin__options">
+                <Checkbox>Remember me</Checkbox>
+                <a className="link" href="">Forgot your password?</a>
+              </div>
+              <button className="signin__button button" type="submit">Sign in</button>
+              <ErrorMessage 
+                name="email"
+                errors={errors}
+                render={({message}) => <p className="signin__error"><MdError className="icon" />{message}</p>}
+              />
+              { !errors.email &&
+              <ErrorMessage 
+                name="password"
+                errors={errors}
+                render={({message}) => <p className="signin__error"><MdError className="icon" />{message}</p>}
+              />}
+            </form>
+          </Card>
+        </section>
+      </main>
     </>
   )
 }

@@ -3,6 +3,7 @@ import { MdClose, MdVisibility, MdVisibilityOff } from "react-icons/md";
 import './InputField.scss'
 
 interface InputFieldProps extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+  icon?: JSX.Element
 }
 
 const InputField = forwardRef<HTMLInputElement, InputFieldProps>((
@@ -22,6 +23,9 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>((
 
   return (
     <div className="input">
+      <div className="input__icon">
+        {props.icon}
+      </div>
       <input 
         {...{
           ...props, 
@@ -38,7 +42,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>((
           <button 
             className="button__icon" 
             onClick={() => setText("")}>
-              <MdClose className="icon-button__icon"/>
+              <MdClose/>
           </button>
         }
         {

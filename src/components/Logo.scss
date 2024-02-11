@@ -1,0 +1,12 @@
+@use "../styles/globals" as g;
+@use "../styles/util" as u;
+
+.logo {
+  display: flex;
+  gap: u.rem(16);
+
+  &__text {
+    @include g.h3;
+    line-height: 100%;
+  }
+}

@@ -4,14 +4,21 @@ import "./Card.scss"
 interface Props {
   icon?: IconType;
   image?: string;
-  heading: string;
+  heading?: React.ReactNode;
   children?: React.ReactNode;
+  className?: string;
 }
 
-const Card = () => {
+const Card = ({children, heading, className = ""}: Props) => {
+  const getClassList = () => className ?
+    `${className} card` : "card"
+
   return (
-    <div className="card">
-      
+    <div className={getClassList()}>
+      <div className="card__heading">{heading && heading}</div>
+      <div className="card__content">
+        {children}
+      </div>
     </div>
   )
 }

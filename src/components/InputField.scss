@@ -5,23 +5,41 @@
 
   width: auto;
   min-width: u.rem(200);
-  min-height: u.rem(52); // 48 + border-width * 2
+  min-height: u.rem(48);
   padding: u.rem(8);
+  gap: u.rem(8);
 
-  border: u.rem(2) solid var(--light-accent-color);
-  border-radius: u.rem(8);
+  border-radius: 999px;
+  background: #E7FAE1;
 
+  &__icon {
+    min-width: max-content;
+    display: flex;
+    align-items: center;
+
+    & > * {
+      min-width: u.rem(24);
+      height: auto;
+      color: var(--color-text-disabled);
+    }
+  }
 
   &__element {
-    padding-right: u.rem(8);
     border: none;
     outline: none;
     background: none;
     width: 100%;
+
+    &::placeholder {
+      color: var(--color-text-disabled);
+    }
   }
 
   &__controls {
     display: flex;
-    column-gap: u.rem(8);
+    align-items: center;
+
+    min-width: max-content;
+    gap: u.rem(4);
   }
 }

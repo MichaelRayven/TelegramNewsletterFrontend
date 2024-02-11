@@ -1,31 +1,40 @@
 @use "../../styles/util" as u;
+@use "../../styles/globals" as g;
 
 .signin {
-  margin-top: u.rem(128);
+  width: min(u.rem(400), 100% - u.rem(32));
+  margin-inline: auto;
+  margin-block: u.rem(120);
 
-  &__dialog {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    row-gap: u.rem(16);
-
-    border: u.rem(1) solid var(--text-color);
-    padding: u.rem(24);
-
-    width: 30%;
-    margin: 0 auto;
-
-    border-radius: u.rem(8);
-    background: var(--background-color);
+  &__heading {
+    @include g.h5;
   }
 
   &__form {
     display: flex;
     flex-direction: column;
-    row-gap: u.rem(8);
+    gap: u.rem(12);
   }
 
   &__button {
-    width: max-content;
+    align-self: center;
+  }
+
+  &__options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__error {
+    background: rgb(221, 116, 116);
+    color: #fff;
+
+    display: flex;
+    align-items: center;
+    gap: u.rem(8);
+
+    padding: u.rem(8);
+    border-radius: u.rem(8);
   }
 }

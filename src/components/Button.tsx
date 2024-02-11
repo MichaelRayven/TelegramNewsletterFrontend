@@ -4,10 +4,11 @@ import "./Button.scss"
 interface Props {
   icon?: IconType;
   appearance?: 'basic' | 'outline';
+  onClick?: () => void;
   children?: React.ReactNode;
 }
 
-const Button = ({ appearance, children, icon }: Props) => {
+const Button = ({ appearance, children, onClick = () => {}, icon }: Props) => {
   const getClassList = () => {
     let list = "button"
 
@@ -23,7 +24,7 @@ const Button = ({ appearance, children, icon }: Props) => {
   }
 
     return (
-      <button className={getClassList()}><a href="">Sign in</a></button>
+      <button className={getClassList()} onClick={() => onClick()}><a href="">Sign in</a></button>
     )
 }
 

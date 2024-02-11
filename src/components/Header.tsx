@@ -1,15 +1,15 @@
-import logo from "@/assets/logo.svg"
 import "./Header.scss"
 import Button from "./Button"
+import { useNavigate } from "react-router-dom"
+import Logo from "./Logo";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <header className="header container">
         <div className="header__inner">
-          <a href="#" className="logo">
-            <img className="logo__image" src={logo} alt="" />
-            <h3 className="logo__text">Botty</h3>
-          </a>
+          <Logo></Logo>
           <nav className="nav">
             <ul className="nav__list">
               <li className="nav__item"><a className="link link_underlined" href="">Docs</a></li>
@@ -19,7 +19,7 @@ const Header = () => {
           </nav>
           <div className="header__actions">
             <a className="link" href="">What's new?</a>
-            <Button>Sign in</Button>
+            <Button onClick={() => navigate("/signin")}>Sign in</Button>
           </div>
         </div>
     </header>
