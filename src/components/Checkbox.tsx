@@ -4,10 +4,11 @@ import "./Checkbox.scss"
 
 interface Props {
     value?: boolean;
+    onChange?: (checked: boolean) => void;
     children?: React.ReactNode;
 }
 
-const Checkbox = ({ children, value }: Props) => {
+const Checkbox = ({ children, value, onChange = () => {} }: Props) => {
     const [checked, setChecked] = useState(value || false)
     
     const getCheckboxIcon = () => checked ? 
@@ -20,7 +21,10 @@ const Checkbox = ({ children, value }: Props) => {
                 id="checkbox"
                 name="checkbox"
                 className="button__icon" 
-                onClick={() => {setChecked(!checked)}}>
+                onClick={() => {
+                    setChecked(!checked)
+                    onChange(checked)
+                }}>
                 {getCheckboxIcon()}
             </button>
             <label htmlFor="checkbox" className="link checkbox__content">
