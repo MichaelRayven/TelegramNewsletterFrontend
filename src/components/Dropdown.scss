@@ -1,0 +1,55 @@
+@use "@/styles/util" as u;
+
+.dropdown {
+  position: relative;
+
+  &__toggle {
+    display: flex;
+    align-items: center;
+    gap: u.rem(4);
+
+    padding: u.rem(8);
+
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &__menu {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    border-radius: u.rem(4);
+    
+    padding: u.rem(8) 0;
+    min-width: u.rem(100);
+
+    display: none;
+    flex-direction: column;
+
+    background-color: var(--color-background);
+    box-shadow: u.rem(2) u.rem(2) u.rem(8) rgba(var(--text), .3);
+
+    &[data-open="true"] {
+      display: flex;
+    }
+  }
+
+  &__item {
+    cursor: pointer;
+    
+    padding-inline: u.rem(12);
+    padding-block: u.rem(4);
+    
+    &:hover {
+      background-color: rgba(var(--text), .05);
+    }
+  }
+
+  &__icon {
+    transition: transform .3s ease-in-out;
+  }
+
+  &:has(&__menu[data-open="true"]) &__icon {
+    transform: rotateZ(180deg);
+  }
+}
