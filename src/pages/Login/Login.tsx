@@ -1,41 +1,45 @@
 import Header from "@/components/Header";
 import InputField from "@/components/InputField";
 import { SubmitHandler, useForm } from "react-hook-form"
-import { baseURL, apiVersion, loginEndpoint } from "@/config/apiConfig"
 import "./Login.scss"
-import axios from "axios";
-import { useEffect } from "react";
 import Checkbox from "@/components/Checkbox";
 import Card from "@/components/Card";
 import Logo from "@/components/Logo";
 import { MdEmail, MdError, MdKey } from "react-icons/md";
 import { ErrorMessage } from "@hookform/error-message";
+import { login } from "@/mock/auth";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "@/config/redux/hooks";
+import { updateUser } from "@/config/redux/slices/accountSlice";
+import Footer from "@/components/Footer";
 
 type Inputs = {
-  username: string,
   email: string,
   password: string,
 };
 
 const LoginPage = () => {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>()
-  const signInUrl = baseURL + apiVersion + loginEndpoint
-  useEffect(() => {
-    console.log(signInUrl)
-  }, [])
+  const { register, handleSubmit, formState: { errors } } = useForm<Inputs>()
+  const [rememberSession, setRememberSession] = useState(false)
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+
   const onSubmit: SubmitHandler<Inputs> = data => {
-    axios
-      .post(signInUrl, data)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    // axios
+    //   .post(signInUrl, data)
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    login(data.email, data.password, false).then(user => {
+      dispatch(updateUser(user))
+      navigate("/profile")
+    })
   }
 
-  console.log(watch("username"))
-  console.log(errors)
   return (
     <>
       <Header></Header>
@@ -75,7 +79,7 @@ const LoginPage = () => {
               })}
             />
             <div className="auth-form__options">
-              <Checkbox>Remember me</Checkbox>
+              <Checkbox onChange={(checked) => setRememberSession(checked)} value={rememberSession}>Remember me</Checkbox>
               <a className="link" href="">Forgot your password?</a>
             </div>
             <button className="auth-form__submit button" type="submit">Sign in</button>
@@ -93,6 +97,7 @@ const LoginPage = () => {
           </form>
         </Card>
       </main>
+      <Footer></Footer>
     </>
   )
 }

@@ -84,6 +84,7 @@ button {
 
 .link {
   transition: opacity .2s ease;
+  white-space: nowrap;
 
   &:hover {
     opacity: 0.85;
@@ -96,7 +97,6 @@ button {
   &_underlined {
     position: relative;
     padding-bottom: u.rem(2);
-    width: max-content;
 
     &::after {
       content: "";
